@@ -1,64 +1,21 @@
-<script setup>
-  import BaseCard from '@/components/BaseCard.vue'
-</script>
-
 <template>
-  <div class="cards-container">
-    <div class="cards">
-      <BaseCard cardTitle="Breakfast at Tiffany"></BaseCard>
-      <BaseCard cardTitle="Casa Del Papel"></BaseCard>
-      <BaseCard cardTitle="Hercule Poirot"></BaseCard>
-      <BaseCard cardTitle="Harry Potter"></BaseCard>
-    </div>
-  </div>
+  <section class="py-10 px-20 lg:px-28 bg-homepage bg-cover bg-center h-full">
+    <h1 class="font-bold leading-tight text-gray-50 text-3xl mb-6">Films du moment</h1>
+    <ul role="list" class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-1 md:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+      <BaseCard
+        v-for="film in filmTrendingStore.trendingFilms.slice(0, 4)"
+        :key="film.id"
+        :film="film"
+      />
+    </ul>
+  </section>
 </template>
 
-<style scoped>
-  .cards-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 100px;
-  }
+<script setup>
+  import BaseCard from '@/components/BaseCard.vue'
+  import { useFilmTrendingStore } from "@/stores/FilmTrendingStore.js";
 
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 50px;
-  }
+  const filmTrendingStore = useFilmTrendingStore();
 
-  /* // Smallest device */
-  @media (min-width: 100px) and (max-width: 575px) {
-    .cards {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* // Small devices (landscape phones, 576px and up) */
-  @media (min-width: 576px) {
-    .cards {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  /* // Medium devices (tablets, 768px and up) */
-  @media (min-width: 768px) {
-    .cards {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  /* // Large devices (desktops, 992px and up) */
-  @media (min-width: 992px) {
-    .cards {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  /* // Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) {
-    .cards {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-</style>
+  filmTrendingStore.fetchTrendingFilms();
+</script>

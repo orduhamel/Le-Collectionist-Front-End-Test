@@ -1,8 +1,10 @@
 <template>
-  <TheHeader/>
-  <main class="bg-white">
-    <router-view></router-view>
-  </main>
+  <div class="bg-white min-h-screen">
+    <TheHeader/>
+    <main class="mx-auto">
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <script setup>

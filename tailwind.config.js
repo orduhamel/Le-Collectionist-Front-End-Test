@@ -11,10 +11,15 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      backgroundImage: {
+        'homepage': "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('src/assets/images/homepage-image.png')",
+      }
     },
   },
   plugins: [
     // require("@tailwindcss/typography"),
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+
   ],
 }

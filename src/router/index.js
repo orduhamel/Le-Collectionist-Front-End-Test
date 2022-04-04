@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import FilmsView from '@/views/FilmsView.vue'
-import FilmsActionView from '@/views/FilmsActionView.vue'
 
 const routes = [
   {
@@ -12,12 +10,17 @@ const routes = [
   {
     path: "/films",
     name: "films",
-    component: FilmsView,
+    component: () => import(/* webpackChunkName: "FilmListView" */ "@/views/FilmListView.vue")
   },
   {
-    path: "/films/action",
-    name: "action",
-    component: FilmsActionView,
+    path: "/films/:genre",
+    name: "FilmListView",
+    component: () => import(/* webpackChunkName: "FilmListView" */ "@/views/FilmListView.vue")
+  },
+  {
+    path: "/films/favorites",
+    name: "FilmListFavoriteView",
+    component: () => import(/* webpackChunkName: "FilmListFavoriteView" */ "@/views/FilmListFavoriteView.vue")
   },
 ]
 
